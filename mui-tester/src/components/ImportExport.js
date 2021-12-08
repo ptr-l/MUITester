@@ -2,7 +2,7 @@ import React, {useState} from "react";
 import { FormControl, Button, Box, TextField, InputLabel } from "@mui/material";
 import SimpleDeckList from "./SimpleDeckList";
 
-function ImportExport ({deckState, setDeckState}) {
+function ImportExport ({deckState, setDeckState, identitySelection, setIdentitySelection}) {
     //Control states for the submission form
     const [author, setAuthor] = useState ("")
     const [deckTitle, setDeckTitle] = useState ("")
@@ -12,7 +12,11 @@ function ImportExport ({deckState, setDeckState}) {
             CreatedBy: author,
             Title: deckTitle,
         }
-        const deckToBeSubmitted = [deckState, deckInfo]
+        const deckToBeSubmitted = {
+            info: deckInfo,
+            identity: identitySelection,
+            decklist: deckState
+        }
         fetch('http://localhost:3005/decks', {
         method: 'POST',
         headers: {

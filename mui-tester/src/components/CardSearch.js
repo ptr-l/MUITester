@@ -4,7 +4,7 @@ import { Autocomplete, ListItem, List, FormControl, Stack, TextField, Container,
 import CardDisplayer from "./CardDisplayer";
 import { Select } from "@mui/material";
 
-function CardSearch ({setDeckState, deckState}) {
+function CardSearch ({setDeckState, deckState, identitySelection, setIdentitySelection}) {
   //Card Data - Overall set of cards fetched - nameLookUp: card selected by user via the autocomplete form 
     const [cardData, setCardData] = useState ([])
     const [nameLookup, setNameLookup] = useState("")

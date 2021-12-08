@@ -2,7 +2,7 @@ import React, {useState} from "react";
 import { Box } from "@mui/system";
 import DeckItem from "./DeckItem";
 
-function DeckBuilder ({deckState, setDeckState}) {
+function DeckBuilder ({deckState, setDeckState, identitySelection, setIdentitySelection}) {
     return (
         <div>
             <ul>

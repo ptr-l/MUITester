@@ -9,15 +9,16 @@ import ImportExport from './components/ImportExport';
 
 
 function App() {
+  //Two states here - had attempted one but it doesn't work well that way for eventual rules enforcement/identity stuff. One for cards in deck, one for selected Identity.
   const [deckState, setDeckState] = useState([])
-
+  const [identitySelection, setIdentitySelection] = useState([])
   return (
     <div className="App">
     <BrowserRouter>
     <Routes>
-    <Route exact path="/CardSearch" element={<CardSearch setDeckState={setDeckState} deckState={deckState} />} />
-    <Route exact path="/DeckBuilder" element={ <DeckBuilder deckState={deckState} setDeckState={setDeckState}/>} />
-    <Route exact path="/ImportExport" element={<ImportExport deckState={deckState} setDeckState={setDeckState}  />} />
+    <Route exact path="/CardSearch" element={<CardSearch setIdentitySelection = {setIdentitySelection} identitySelection = {identitySelection} setDeckState={setDeckState} deckState={deckState} />} />
+    <Route exact path="/DeckBuilder" element={  <DeckBuilder setIdentitySelection = {setIdentitySelection} identitySelection = {identitySelection} deckState={deckState} setDeckState={setDeckState}/>} />
+    <Route exact path="/ImportExport" element={<ImportExport setIdentitySelection = {setIdentitySelection} identitySelection = {identitySelection} deckState={deckState} setDeckState={setDeckState}  />} />
     </Routes>
     <NavPanel /> 
     </BrowserRouter>

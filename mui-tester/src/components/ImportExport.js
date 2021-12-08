@@ -3,12 +3,10 @@ import { FormControl, Button, Box, TextField, InputLabel } from "@mui/material";
 import SimpleDeckList from "./SimpleDeckList";
 
 function ImportExport ({deckState, setDeckState}) {
+    //Control states for the submission form
     const [author, setAuthor] = useState ("")
     const [deckTitle, setDeckTitle] = useState ("")
-
-    let cleanedDeck = deckState.map((card)=>{
-        
-    })
+    //Function to post the deck.
     function submitDeck (e) {
         const deckInfo = {
             CreatedBy: author,

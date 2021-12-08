@@ -3,6 +3,7 @@ import { ToggleButton, ToggleButtonGroup } from "@mui/material";
 
 
 function DeckItem ({card}) {
+    //quantity/setQuanity are not going to play nice when I add the import functionality - need to reconsider here.
     const [quantity, setQuantity] = useState(1)
     function handleChange (e) {
         setQuantity(e.target.value)

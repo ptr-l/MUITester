@@ -5,14 +5,16 @@ import CardDisplayer from "./CardDisplayer";
 import { Select } from "@mui/material";
 
 function CardSearch ({setDeckState, deckState}) {
+  //Card Data - Overall set of cards fetched - nameLookUp: card selected by user via the autocomplete form 
     const [cardData, setCardData] = useState ([])
     const [nameLookup, setNameLookup] = useState("")
-    const [cardSelection, setCardSelection] = useState({})
+  //side, faction, type, costOperator, costValue = states for setting the filters. 
     const [side, setSide] = useState('All')
     const [faction, setFaction] = useState('All')
     const [type, setType] = useState('All')
     const [costOperator, setCostOperator] = useState('All')
     const [costValue, setCostValue] = useState(0)
+  //CardType // selectedCard and the related useEffect are there while we attempt to figure out some rules enforcement issues.
     const [cardType, setCardType] = useState(true)
     let selectedCard = nameLookup
     useEffect (()=> {
@@ -20,14 +22,17 @@ function CardSearch ({setDeckState, deckState}) {
             setCardType(false)
         }
     },[nameLookup])
+    //Simple fetch from the server to acquire cards. 
     useEffect(()=> {
     fetch('http://localhost:3005/cards')
     .then((response)=> response.json())
     .then((data)=> {setCardData(data)})
   },[])
+  //Adds to the deckState state - need to figure out a way to add seperate identity though? Possibly a 3rd state.
 function sendCardtoDeck () {
-  setDeckState.deck([...deckState.deck, nameLookup])
+  setDeckState([...deckState, nameLookup])
 }
+//Variables for the filter functions.
   let sideFilterFunc = card => {
     if (side === 'All') return true
     else return card.side_code === side
@@ -49,6 +54,7 @@ function sendCardtoDeck () {
     if (costOperator === '<=') return card.cost <= costValue
     if (costOperator === '<') return card.cost < costValue
   }
+  //Actually runs the filters.
   let cardsToDisplay = cardData
   .filter(sideFilterFunc)
   .filter(factionFilterFunc)
@@ -64,11 +70,7 @@ function sendCardtoDeck () {
     else return 0
   })
    
-  function changeCard () {
-    let newCard = cardData.find((card)=>card.stripped_title === nameLookup)
-    setCardSelection(newCard)
-  }
- 
+ //Base props for the autocomplete. It works, but it is returning errors in console. Also does NOT like the delete click.
   const baseProps = {
     options: cardsToDisplay,
 
@@ -76,6 +78,7 @@ function sendCardtoDeck () {
 
   return (
       <div>
+        {/* CSS issues to be resolved  */}
       <Container sx={{ alignContent: 'center', display: 'grid', gridTemplateColums:'repeat(4, 1fr)', gridTemplateRows: 'auto', 
       gridTemplateAreas: '"main sidebar' }}>
       <Stack spacing={1} sx={{ gridArea: 'main'}}>
@@ -141,7 +144,7 @@ function sendCardtoDeck () {
         id="name"
         renderInput={(params) => (
             <TextField {...params} label="Search By Name" variant="standard" />
-        )} /> <button onClick={changeCard}>Send It</button>
+        )} /> 
       <button onClick={sendCardtoDeck} >Add to Deck</button>
     </Stack>
     <CardDisplayer sx={{gridArea:'sidebar'}} selectedCard={nameLookup}/>

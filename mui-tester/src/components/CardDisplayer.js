@@ -3,6 +3,7 @@ import { Card, CardMedia, CardActions, Table, TableContainer, TableBody, TableCe
 
 
 function CardDisplayer ({selectedCard, cardType}) {
+    //Need to add some conditional rendering here.
     
     return (
         <Card sx={{width: 800, height: 1120,  display: 'flex', flexDirection:'column',}}>

@@ -2,8 +2,10 @@ import React, {useState} from "react";
 import { Box } from "@mui/system";
 import DeckItem from "./DeckItem";
 import { Card } from "@mui/material";
+import DeckValidation from "./DeckValidation"
 
 function DeckBuilder ({deckState, setDeckState, identitySelection, setIdentitySelection}) {
+    l
     return (
         <div>
             <Card> 
@@ -16,6 +18,9 @@ function DeckBuilder ({deckState, setDeckState, identitySelection, setIdentitySe
                     return <DeckItem card={card}/>
                 }))}
             </ul>
+            <Card>
+                <DeckValidation />
+            </Card>
         </div>
     )
 }

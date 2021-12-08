@@ -30,7 +30,9 @@ function CardSearch ({setDeckState, deckState, identitySelection, setIdentitySel
   },[])
   //Adds to the deckState state - need to figure out a way to add seperate identity though? Possibly a 3rd state.
 function sendCardtoDeck () {
-  setDeckState([...deckState, nameLookup])
+  let newCard = nameLookup
+  newCard.deckAmount = 1 
+  setDeckState([...deckState, newCard])
 }
   //Changes selected Identity
   function changeIdentity () {

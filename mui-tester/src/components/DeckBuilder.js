@@ -5,7 +5,6 @@ import { Card } from "@mui/material";
 import DeckValidation from "./DeckValidation"
 
 function DeckBuilder ({deckState, setDeckState, identitySelection, setIdentitySelection}) {
-    l
     return (
         <div>
             <Card> 
@@ -15,11 +14,11 @@ function DeckBuilder ({deckState, setDeckState, identitySelection, setIdentitySe
                 </Card>
             <ul>
                 {deckState.map((card=>{
-                    return <DeckItem card={card}/>
+                    return <DeckItem  deckState={deckState} setDeckState={setDeckState} card={card}/>
                 }))}
             </ul>
             <Card>
-                <DeckValidation />
+                <DeckValidation deckState={deckState} identitySelection={identitySelection}/>
             </Card>
         </div>
     )

@@ -2,12 +2,12 @@ import React, {useState, useEffect} from "react";
 import { ToggleButton, ToggleButtonGroup } from "@mui/material";
 
 
-function DeckItem ({card}) {
+function DeckItem ({card, deckState, setDeckState}) {
     //quantity/setQuanity are not going to play nice when I add the import functionality - need to reconsider here.
-    const [quantity, setQuantity] = useState(1)
+    const [quantity, setQuantity] = useState(card.deckAmount)
     function handleChange (e) {
         setQuantity(e.target.value)
-        card.deckAmount = e.target.value
+        card.deckAmount = quantity
     }
     return (
     <li>{card.stripped_title}

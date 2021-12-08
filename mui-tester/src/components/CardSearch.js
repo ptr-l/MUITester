@@ -16,11 +16,11 @@ function CardSearch ({setDeckState, deckState, identitySelection, setIdentitySel
     const [costValue, setCostValue] = useState(0)
   //CardType // selectedCard and the related useEffect are there while we attempt to figure out some rules enforcement issues.
     const [cardType, setCardType] = useState(true)
-    let selectedCard = nameLookup
     useEffect (()=> {
-        if (selectedCard.type_code === 'identity') {
+        if (nameLookup.type_code === 'Identity') {
             setCardType(false)
         }
+        else setCardType(true)
     },[nameLookup])
     //Simple fetch from the server to acquire cards. 
     useEffect(()=> {
@@ -32,6 +32,10 @@ function CardSearch ({setDeckState, deckState, identitySelection, setIdentitySel
 function sendCardtoDeck () {
   setDeckState([...deckState, nameLookup])
 }
+  //Changes selected Identity
+  function changeIdentity () {
+    setIdentitySelection(nameLookup)
+  }
 //Variables for the filter functions.
   let sideFilterFunc = card => {
     if (side === 'All') return true
@@ -144,8 +148,8 @@ function sendCardtoDeck () {
         id="name"
         renderInput={(params) => (
             <TextField {...params} label="Search By Name" variant="standard" />
-        )} /> 
-      <button onClick={sendCardtoDeck} >Add to Deck</button>
+        )} /> {cardType ? 
+      <button onClick={sendCardtoDeck} >Add to Deck</button> : <button onClick={changeIdentity}> Set Deck Identity</button>} 
     </Stack>
     <CardDisplayer sx={{gridArea:'sidebar'}} selectedCard={nameLookup}/>
     </Container>

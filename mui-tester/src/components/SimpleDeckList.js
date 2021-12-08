@@ -7,7 +7,7 @@ function SimpleDeckList ({deckState}) {
         <Paper>
             <h3></h3>
             <ul>
-                {deckState.deck.map((card)=>{return <li>{card.stripped_title} || x{card.deckAmount}</li>})}
+                {deckState.map((card)=>{return <li>{card.stripped_title} || x{card.deckAmount}</li>})}
             </ul>
         </Paper>
     )

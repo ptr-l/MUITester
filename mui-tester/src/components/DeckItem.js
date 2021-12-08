@@ -1,11 +1,9 @@
 import React, {useState, useEffect} from "react";
 import { ToggleButton, ToggleButtonGroup } from "@mui/material";
 
+
 function DeckItem ({card}) {
     const [quantity, setQuantity] = useState(1)
-    useEffect (()=> {
-        if (Boolean(card.deckAmount) === false) {card.deckAmount = 1}
-    },[])
     function handleChange (e) {
         setQuantity(e.target.value)
         card.deckAmount = e.target.value

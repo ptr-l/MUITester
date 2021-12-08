@@ -1,9 +1,14 @@
 import React, {useState} from "react";
 import { FormControl, Button, Box, TextField, InputLabel } from "@mui/material";
+import SimpleDeckList from "./SimpleDeckList";
 
 function ImportExport ({deckState, setDeckState}) {
     const [author, setAuthor] = useState ("")
     const [deckTitle, setDeckTitle] = useState ("")
+
+    let cleanedDeck = deckState.map((card)=>{
+        
+    })
     function submitDeck (e) {
         const deckInfo = {
             CreatedBy: author,
@@ -28,6 +33,9 @@ function ImportExport ({deckState, setDeckState}) {
                 <TextField label='Deck Title' value={deckTitle} onChange={(e)=>{setDeckTitle(e.target.value)}} required={true} />
                 <Button label="Deck Submit Button" onClick={submitDeck}>Submit Deck</Button>
                 </FormControl>
+            </Box>
+            <Box>
+                <SimpleDeckList deckState={deckState}/>
             </Box>
             <Box>
                 <h1>Decks to Load Go Here</h1>

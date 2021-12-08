@@ -7,8 +7,17 @@ function DeckItem ({card, deckState, setDeckState}) {
     const [quantity, setQuantity] = useState(card.deckAmount)
     function handleChange (e) {
         setQuantity(e.target.value)
-        card.deckAmount = quantity
+        onQuantityChange(e.target.value)
     }
+    function onQuantityChange(val) {
+        let dCard = card
+        dCard.deckAmount = val
+        let nDeckState = deckState.filter((ocard)=> {
+            if (ocard.stripped_title != card.stripped_title) return true
+        })
+        nDeckState = [...nDeckState, dCard]
+        setDeckState(nDeckState)}
+    
     return (
     <li>{card.stripped_title}
                     <ToggleButtonGroup aria-label="Quantity Buttons" color="primary" exclusive={true} value={quantity} onChange={handleChange}>

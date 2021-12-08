@@ -19,7 +19,7 @@ function DeckValidation ({identitySelection, deckState}) {
         deckNonFactionCards.map((card)=> {infCost = infCost + (card.faction_cost * card.deckAmount)})
         setDeckInfluenceCost(infCost)
         let deckSz = 0
-        deckState.map((card) => {deckSz = deckSz + (1 * card.deckAmount)})
+        deckState.map((card) => {deckSz = deckSz + card.deckAmount})
         setDeckSize(deckSz)
     }, [deckState, identitySelection])
     
@@ -31,6 +31,7 @@ function DeckValidation ({identitySelection, deckState}) {
         <h3>deck size: {deckSize}</h3>
         <button onClick={console.log(deckNonSideCards)}>Tester</button>
         <ul>
+            {deckSize < identitySelection.minimum_deck_size && <li>You are under the minimum deck size!</li>} 
             {deckInfluenceCost > identitySelection.influence_limit && <li>You are {deckInfluenceCost - identitySelection.influence_limit} over your influence limit! </li>}
             {deckNonSideCards.length > 0 && <li>You have {deckNonSideCards.length} {deckSide == 'runner' ? 'Crop' : 'Runner'} cards in your deck!</li>}
         </ul>

@@ -3,10 +3,10 @@ import reactDom from "react-dom";
 import { Autocomplete, ListItem, List, FormControl, Stack, TextField, Container, MenuItem, InputLabel } from "@mui/material";
 import CardDisplayer from "./CardDisplayer";
 import { Select } from "@mui/material";
+import { Box } from "@mui/system";
 
-function CardSearch ({setDeckState, deckState, identitySelection, setIdentitySelection}) {
-  //Card Data - Overall set of cards fetched - nameLookUp: card selected by user via the autocomplete form 
-    const [cardData, setCardData] = useState ([])
+function CardSearch ({setDeckState, deckState, identitySelection, cardData, setIdentitySelection}) {
+  
     const [nameLookup, setNameLookup] = useState("")
   //side, faction, type, costOperator, costValue = states for setting the filters. 
     const [side, setSide] = useState('All')
@@ -22,12 +22,7 @@ function CardSearch ({setDeckState, deckState, identitySelection, setIdentitySel
         }
         else setCardType(true)
     },[nameLookup])
-    //Simple fetch from the server to acquire cards. 
-    useEffect(()=> {
-    fetch('http://localhost:3005/cards')
-    .then((response)=> response.json())
-    .then((data)=> {setCardData(data)})
-  },[])
+    
   //Adds to the deckState state - need to figure out a way to add seperate identity though? Possibly a 3rd state.
 function sendCardtoDeck () {
   let newCard = nameLookup
@@ -84,10 +79,11 @@ function sendCardtoDeck () {
 
   return (
       <div>
+      <Box sx={{ height: `95%`, width: `95%`}}>
         {/* CSS issues to be resolved  */}
-      <Container sx={{ alignContent: 'center', display: 'grid', gridTemplateColums:'repeat(4, 1fr)', gridTemplateRows: 'auto', 
-      gridTemplateAreas: '"main sidebar' }}>
-      <Stack spacing={1} sx={{ gridArea: 'main'}}>
+      <Box sx={{ height: `90%`, width: `90%`, padding: '5%, 5%, 5%, 5%', alignContent: 'center', display: 'grid', gridTemplateColums:'1fr 1fr 1fr 1fr 1fr 1fr 1fr', gridTemplateRows: '1fr', 
+      gridTemplateAreas: '"search search . cardinf cardinf cardinf"' }}>
+      <Stack spacing={1} sx={{paddingTop: `10%`, height: `90%`, width: `90%`, gridArea: 'search', alignContent: `center`}}>
         <FormControl>
         <InputLabel id='SideLabel'>Filter by Side</InputLabel>
         <Select
@@ -153,8 +149,9 @@ function sendCardtoDeck () {
         )} /> {cardType ? 
       <button onClick={sendCardtoDeck} >Add to Deck</button> : <button onClick={changeIdentity}> Set Deck Identity</button>} 
     </Stack>
-    <CardDisplayer sx={{gridArea:'sidebar'}} selectedCard={nameLookup}/>
-    </Container>
+    <CardDisplayer sx={{height: `90%`, width: `90%`, gridArea:'cardinf'}} selectedCard={nameLookup}/>
+    </Box>
+    </Box>
      </div>
   )
     }

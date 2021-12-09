@@ -6,13 +6,13 @@ function CardDisplayer ({selectedCard, cardType}) {
     //Need to add some conditional rendering here.
     
     return (
-        <Card sx={{width: 800, height: 1120,  display: 'flex', flexDirection:'column',}}>
-            <CardContent sx={{display: 'flex'}}>
+        <Card sx={{height: '95%', width: '95%'}}>
+            <CardContent sx={{display: `grid`, gridTemplateColumns: `60% 40%`, gridTemplateAreas: `"info image"`, height: `90%`, width: `90%`}}>
                 <CardMedia
-                sx={{ width: '60%', height: '84' }}
+                sx={{ objectFit: `contain`, gridArea: `image` }}
                 component="img"
                 image={`https://netrunnerdb.com/card_image/large/${selectedCard.code}.jpg`}/>
-                <TableContainer sx ={{display: 'flex',align: 'right', width: 'auto'}}>
+                <TableContainer sx ={{gridArea: `info`, align: 'right', width: 'auto'}}>
                     <Table>
                         <TableRow>
                             <TableCell>Cardname:</TableCell>

@@ -1,8 +1,10 @@
 import React, {useState} from "react";
 import { Box } from "@mui/system";
 import DeckItem from "./DeckItem";
-import { Card, Input, FormControl, Select, InputLabel, Button, ToggleButton, ToggleButtonGroup } from "@mui/material";
+import { FixedSizeList } from "react-window";
+import { List, Card, Input, FormControl, Select, InputLabel, Button, ToggleButton, ToggleButtonGroup } from "@mui/material";
 import DeckValidation from "./DeckValidation"
+import AutoSizer from "react-virtualized-auto-sizer";
 
 function DeckBuilder ({deckState, setDeckState, cardData, identitySelection, setIdentitySelection}) {
     //State for the Card Selector 
@@ -60,22 +62,31 @@ function DeckBuilder ({deckState, setDeckState, cardData, identitySelection, set
     }
     function addToDeck () {
         let newCard = cardChoice
+        if (deckState.some(e => e.code === newCard.code)) {alert('This card is already in your deck!'); return} 
         newCard.deckAmount = 1 
         setDeckState([...deckState, newCard])
       }
     return (
-        <div>
+        <Box sx={{height: '92%', width: '92%'}}>
             <Card> 
                 <p>
                     {identitySelection.stripped_title}
                     
                 </p>
                 </Card>
-            <ul>
+            <Box sx={{paddingLeft:'5%', height: '85%', width: '85%'}}>
+            <List
+            sx={{padding: '5%',
+                height: '80%',
+                maxHeight: 295,
+                width: '45%',
+                maxWidth: '45%',
+                overflow: 'auto'}}>
                 {sortedDeck.map((card=>{
                     return <DeckItem  deckState={deckState} setDeckState={setDeckState} card={card}/>
                 }))}
-            </ul>
+            </List>
+            </Box>
             <Box sx={{display: `grid`, gridTemplateColumns:`60% 40%`, gridTemplateAreas: `"main sidebar"`}}>
                 <Box sx={{gridArea: `main`}}>
                     <FormControl >
@@ -122,7 +133,7 @@ function DeckBuilder ({deckState, setDeckState, cardData, identitySelection, set
             <Card>
                 <DeckValidation deckState={deckState} identitySelection={identitySelection}/>
             </Card>
-        </div>
+        </Box>
     )
 }
 

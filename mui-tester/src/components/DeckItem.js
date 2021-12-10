@@ -1,5 +1,5 @@
 import React, {useState} from "react";
-import { ToggleButton, ToggleButtonGroup, Button } from "@mui/material";
+import { ListItem, ToggleButton, ToggleButtonGroup, Button } from "@mui/material";
 
 
 function DeckItem ({card, deckState, setDeckState}) {
@@ -24,13 +24,13 @@ function DeckItem ({card, deckState, setDeckState}) {
         setDeckState(nDeckState)}
     
     return (
-    <li>{card.stripped_title}
+    <ListItem>{card.stripped_title}
                     <ToggleButtonGroup aria-label="Quantity Buttons" color="secondary" exclusive={true} value={quantity} onChange={handleChange}>
                         <ToggleButton aria-label="1 Button" value={1}>{1}</ToggleButton>
                         <ToggleButton aria-label="2 Button" value={2}>{2}</ToggleButton>
                         <ToggleButton aria-label="3 Button" value={3}>{3}</ToggleButton>
                         </ToggleButtonGroup>
-                        <Button onClick={deleteCard}>X</Button></li>
+                        <Button onClick={deleteCard}>X</Button></ListItem>
     )
 }
 

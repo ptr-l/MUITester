@@ -26,6 +26,7 @@ function CardSearch ({setDeckState, deckState, identitySelection, cardData, setI
   //Adds to the deckState state - need to figure out a way to add seperate identity though? Possibly a 3rd state.
 function sendCardtoDeck () {
   let newCard = nameLookup
+  if (deckState.some(e => e.code === newCard.code)) {alert('This card is already in your deck!'); return} 
   newCard.deckAmount = 1 
   setDeckState([...deckState, newCard])
 }
@@ -83,7 +84,7 @@ function sendCardtoDeck () {
         {/* CSS issues to be resolved  */}
       <Box sx={{ height: `90%`, width: `90%`, padding: '5%, 5%, 5%, 5%', alignContent: 'center', display: 'grid', gridTemplateColums:'1fr 1fr 1fr 1fr 1fr 1fr 1fr', gridTemplateRows: '1fr', 
       gridTemplateAreas: '"search search . cardinf cardinf cardinf"' }}>
-      <Stack spacing={1} sx={{paddingLeft: `8%`,paddingTop: `10%`, height: `90%`, width: `90%`, gridArea: 'search', alignContent: `center`}}>
+      <Stack spacing={1} sx={{paddingLeft: `11%`, paddingTop: `11%`, height: `90%`, width: `90%`, gridArea: 'search', alignContent: `center`}}>
         <FormControl>
         <InputLabel id='SideLabel'>Filter by Side</InputLabel>
         <Select

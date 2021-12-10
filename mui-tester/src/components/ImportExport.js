@@ -39,6 +39,16 @@ function ImportExport ({deckState, setDeckState, identitySelection, setIdentityS
     function changetargetDeck (e) {
         setTargetDeck(e.target.value)
     }
+    function deleteDeck (e) {
+        let deckId = targetDeck
+        fetch(`http://localhost:3005/decks/${targetDeck}`, {
+            method: "DELETE",
+          })
+        setDecksData(decksData.filter((deck)=> {
+           if (deck.info.id !== deckId) return true
+        }))
+    }
+
     function loadDeck () {
         fetch(`http://localhost:3005/decks/${targetDeck}`)
         .then((response)=> response.json())
@@ -69,10 +79,11 @@ function ImportExport ({deckState, setDeckState, identitySelection, setIdentityS
                     {decksData.map((deck)=>(
                         <option key={deck.info.id} value={deck.info.id}>
                            Title: {deck.info.Title} || Created By: {deck.info.CreatedBy} || Identity: {deck.identity.stripped_title}
-                            </option>
+                           </option>
                     ))}
                 </Select>
                 <Button onClick={loadDeck}>Load Deck</Button>
+                <Button onClick={deleteDeck}>Delete Deck</Button>
             </Box>
         </div>
     )

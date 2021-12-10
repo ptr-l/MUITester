@@ -5,10 +5,9 @@ import { Paper } from "@mui/material";
 function SimpleDeckList ({deckState}) {
     return (
         <Paper>
-            <h3></h3>
-            <ul>
+            <p>
                 {deckState.map((card)=>{return <li>{card.stripped_title} || x{card.deckAmount}</li>})}
-            </ul>
+            </p>
         </Paper>
     )
 }

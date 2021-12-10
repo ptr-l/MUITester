@@ -1,5 +1,5 @@
-import React, {useState, useEffect} from "react";
-import { ToggleButton, ToggleButtonGroup } from "@mui/material";
+import React, {useState} from "react";
+import { ToggleButton, ToggleButtonGroup, Button } from "@mui/material";
 
 
 function DeckItem ({card, deckState, setDeckState}) {
@@ -8,6 +8,11 @@ function DeckItem ({card, deckState, setDeckState}) {
     function handleChange (e) {
         setQuantity(parseInt(e.target.value))
         onQuantityChange(parseInt(e.target.value))
+    }
+    function deleteCard(e) {
+        let cleanedDeck = deckState.filter((dCard)=> {
+          if (card.code !== dCard.code) return true})
+          setDeckState(cleanedDeck)
     }
     function onQuantityChange(val) {
         let dCard = card
@@ -24,7 +29,8 @@ function DeckItem ({card, deckState, setDeckState}) {
                         <ToggleButton aria-label="1 Button" value={1}>{1}</ToggleButton>
                         <ToggleButton aria-label="2 Button" value={2}>{2}</ToggleButton>
                         <ToggleButton aria-label="3 Button" value={3}>{3}</ToggleButton>
-                        </ToggleButtonGroup></li>
+                        </ToggleButtonGroup>
+                        <Button onClick={deleteCard}>X</Button></li>
     )
 }
 

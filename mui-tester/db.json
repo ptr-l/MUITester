@@ -3274,76 +3274,80 @@
     }
   ],
   "decks": [
-    [
-      [
+    {
+      "info": {
+        "CreatedBy": "A",
+        "Title": "A",
+        "id": 1
+      },
+      "identity": {
+        "code": "30035",
+        "deck_limit": 1,
+        "faction_code": "Haas-Bioroid",
+        "faction_cost": 0,
+        "flavor": "Not an Atom Misplaced.",
+        "illustrator": "Emilio Rodriguez",
+        "influence_limit": 15,
+        "keywords": "Megacorp",
+        "minimum_deck_size": 40,
+        "pack_code": "sg",
+        "position": 35,
+        "quantity": 1,
+        "side_code": "corp",
+        "stripped_text": "You get +1 maximum hand size. Whenever you score an agenda, you may add 1 card from Archives to HQ.",
+        "stripped_title": "Haas-Bioroid: Precision Design",
+        "text": "You get +1 maximum hand size.\nWhenever you score an agenda, you may add 1 card from Archives to HQ.",
+        "title": "Haas-Bioroid: Precision Design",
+        "type_code": "Identity",
+        "uniqueness": false
+      },
+      "decklist": [
         {
-          "code": "31048",
-          "cost": 4,
+          "code": "30058",
+          "cost": 1,
           "deck_limit": 3,
-          "faction_code": "Haas-Bioroid",
-          "faction_cost": 4,
-          "flavor": "Sometimes we at Haas-Bioroid are asked how well bioroids interface socially with human workforces. Thanks to our tireless efforts, we believe this will not be a problem in the long term.",
-          "illustrator": "Olie Boldador",
-          "pack_code": "su21",
-          "position": 48,
+          "faction_code": "NBN",
+          "faction_cost": 3,
+          "flavor": "Free commemorative souvenir!",
+          "illustrator": "Bruno Balixa",
+          "pack_code": "sg",
+          "position": 58,
           "quantity": 3,
           "side_code": "corp",
-          "stripped_text": "Gain click click.",
-          "stripped_title": "Biotic Labor",
-          "text": "Gain [click][click].",
-          "title": "Biotic Labor",
-          "type_code": "Operation",
-          "uniqueness": false,
+          "stripped_text": "Persistent -> Whenever a run on this server ends, if the Runner stole any agendas during that run, give the Runner 2 tags. (If the Runner trashes this card while accessing it, this ability still applies for the remainder of this run.)",
+          "stripped_title": "AMAZE Amusements",
+          "text": "Persistent → Whenever a run on this server ends, if the Runner stole any agendas during that run, give the Runner 2 tags. <em>(If the Runner trashes this card while accessing it, this ability still applies for the remainder of this run.)</em>",
+          "title": "AMAZE Amusements",
+          "trash_cost": 3,
+          "type_code": "Upgrade",
+          "uniqueness": true,
           "deckAmount": 1
         },
         {
-          "code": "31081",
-          "cost": 3,
+          "code": "31021",
+          "cost": 4,
           "deck_limit": 3,
-          "faction_code": "Neutral-Corp",
-          "faction_cost": 0,
-          "flavor": "No runner sees the same thing. Some say it's a beast, others a man. But they all agree that it smells blue, and tastes like eternity.",
-          "illustrator": "Benjamin Giletti",
-          "keywords": "Code Gate",
+          "faction_code": "Criminal",
+          "faction_cost": 2,
+          "flavor": "Slippier than a buttered escargot.",
+          "illustrator": "Zoe Cohen",
+          "keywords": "Icebreaker - Decoder",
+          "memory_cost": 1,
           "pack_code": "su21",
-          "position": 81,
-          "quantity": 3,
-          "side_code": "corp",
-          "strength": 2,
-          "stripped_text": "Subroutine The Runner loses click. Subroutine End the run.",
-          "stripped_title": "Enigma",
-          "text": "[subroutine] The Runner loses [click].\n[subroutine] End the run.",
-          "title": "Enigma",
-          "type_code": "ICE",
-          "uniqueness": false,
-          "deckAmount": "3"
-        },
-        {
-          "code": "30029",
-          "cost": 1,
-          "deck_limit": 3,
-          "faction_code": "Neutral-Runner",
-          "faction_cost": 0,
-          "flavor": "\"After 381FS4 started acting independently, all bets were off. Rethreading its own brain chip... even probing <strong>our</strong> nodes. I had to shut it down.\"\n—Linus Lovegood, NBN Novelties&Acquisitions",
-          "illustrator": "Scott Uminga",
-          "keywords": "Run",
-          "pack_code": "sg",
-          "position": 29,
+          "position": 21,
           "quantity": 3,
           "side_code": "runner",
-          "stripped_text": "Place 5 credits on this event, then run any server. You can spend hosted credits during that run.",
-          "stripped_title": "Overclock",
-          "text": "Place 5[credit] on this event, then run any server. You can spend hosted credits during that run.",
-          "title": "Overclock",
-          "type_code": "Event",
+          "strength": 2,
+          "stripped_text": "Interface -> 1 credit: Break 1 code gate subroutine. 2 credits: +2 strength. trash: Bypass the code gate you are encountering.",
+          "stripped_title": "Abagnale",
+          "text": "Interface → 1[credit]: Break 1 <strong>code gate</strong> subroutine.\n2[credit]: +2 strength.\n[trash]: Bypass the <strong>code gate</strong> you are encountering.",
+          "title": "Abagnale",
+          "type_code": "Program",
           "uniqueness": false,
-          "deckAmount": "2"
+          "deckAmount": 2
         }
       ],
-      {
-        "CreatedBy": "Author",
-        "Title": "Test"
-      }
-    ]
+      "id": 1
+    }
   ]
 }

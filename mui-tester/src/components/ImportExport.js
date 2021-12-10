@@ -1,16 +1,25 @@
-import React, {useState} from "react";
-import { FormControl, Button, Box, TextField, InputLabel } from "@mui/material";
+import React, {useEffect, useState} from "react";
+import { FormControl, Button, ButtonGroup, Select, Box, TextField, InputLabel } from "@mui/material";
 import SimpleDeckList from "./SimpleDeckList";
 
 function ImportExport ({deckState, setDeckState, identitySelection, setIdentitySelection}) {
     //Control states for the submission form
     const [author, setAuthor] = useState ("")
     const [deckTitle, setDeckTitle] = useState ("")
+    const [decksData, setDecksData] = useState ([])
+    const [targetDeck, setTargetDeck] = useState ("")
     //Function to post the deck.
+
+    useEffect(()=> {
+        fetch('http://localhost:3005/decks')
+        .then((response)=> response.json())
+        .then((data)=> {setDecksData(data)})
+    },[])
     function submitDeck (e) {
         const deckInfo = {
             CreatedBy: author,
             Title: deckTitle,
+            id: decksData.length + 1 
         }
         const deckToBeSubmitted = {
             info: deckInfo,
@@ -24,23 +33,46 @@ function ImportExport ({deckState, setDeckState, identitySelection, setIdentityS
         },
         body: JSON.stringify(deckToBeSubmitted),
         })
-        e.form.reset()
+    }
+  
+
+    function changetargetDeck (e) {
+        setTargetDeck(e.target.value)
+    }
+    function loadDeck () {
+        fetch(`http://localhost:3005/decks/${targetDeck}`)
+        .then((response)=> response.json())
+        .then((data)=> {setDeckState(data.decklist)})
     }
     return (
         <div>
             <Box>
-                <FormControl>
-                <InputLabel label='Deck Submit Form'>Deck Submission Form</InputLabel>
-                <TextField label='Author' value={author} required={true} onChange={(e)=>{setAuthor(e.target.value)}} /> 
-                <TextField label='Deck Title' value={deckTitle} onChange={(e)=>{setDeckTitle(e.target.value)}} required={true} />
-                <Button label="Deck Submit Button" onClick={submitDeck}>Submit Deck</Button>
-                </FormControl>
-            </Box>
-            <Box>
+                <Box>
+                    <FormControl>
+                        <InputLabel label='Deck Submit Form'>Deck Submission Form</InputLabel>
+                            <TextField label='Author' value={author} required={true} onChange={(e)=>{setAuthor(e.target.value)}} /> 
+                            <TextField label='Deck Title' value={deckTitle} onChange={(e)=>{setDeckTitle(e.target.value)}} required={true} />
+                            <Button label="Deck Submit Button" onClick={submitDeck}>Submit Deck</Button>
+                    </FormControl>
+                </Box>
+            
                 <SimpleDeckList deckState={deckState}/>
             </Box>
             <Box>
-                <h1>Decks to Load Go Here</h1>
+                <h3>Available Decks to Load</h3>
+                 <Select 
+                multiple={true}
+                native={true}
+                onChange={changetargetDeck}
+                label="Quick Select"
+                inputProps={{id:'select-multiple-native'}}>
+                    {decksData.map((deck)=>(
+                        <option key={deck.info.id} value={deck.info.id}>
+                           Title: {deck.info.Title} || Created By: {deck.info.CreatedBy} || Identity: {deck.identity.stripped_title}
+                            </option>
+                    ))}
+                </Select>
+                <Button onClick={loadDeck}>Load Deck</Button>
             </Box>
         </div>
     )
